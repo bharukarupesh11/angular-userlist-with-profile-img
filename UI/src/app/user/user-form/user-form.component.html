@@ -1,0 +1,81 @@
+<div class="form-container">
+    <div class="card" style="width: 35rem;">
+      <h5 class="card-header">{{ formTitle }}</h5>
+      <div class="card-body">
+          <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input formControlName="firstName" id="firstName" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['firstName'].errors }">
+                        <div *ngIf="submitted && f['firstName'].errors" class="invalid-feedback">
+                            <div *ngIf="f['firstName'].errors?.['required']">Item name is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input formControlName="lastName" id="lastName" type="text" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['lastName'].errors }">
+                        <div *ngIf="submitted && f['lastName'].errors" class="invalid-feedback">
+                            <div *ngIf="f['lastName'].errors?.['required']">Last name is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="email">Email Id</label>
+                        <input formControlName="email" id="email" type="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                            <div *ngIf="f['email'].errors?.['required']">Email is required</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input formControlName="password" id="password" type="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }">
+                        <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+                            <div *ngIf="f['password'].errors?.['required']">Password is required</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Profile Img</label>
+                            <input class="form-control" type="file" id="formFile" (change)="uploadFile($event)">
+                          </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <label for=""></label> <!-- Kept empty intentionally so that checkbox will be taken in line with password input field -->
+                        <div class="form-group">
+                            <input class="form-check-input" formControlName="isAdmin" type="checkbox" value="" id="isAdmin">
+                            <label class="form-check-label" for="isAdmin">
+                                &nbsp; Is Admin
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              
+            <div class="text-center">
+                <button [disabled]="loading" class="btn btn-success">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    {{ buttonTitle }}
+                </button>
+            </div>
+  
+            <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+          </form>
+      </div>
+    </div>
+  </div>

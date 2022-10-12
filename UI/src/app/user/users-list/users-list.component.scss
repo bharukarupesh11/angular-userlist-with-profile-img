@@ -1,0 +1,16 @@
+.container {
+  margin-top: 40px; /* to place container div below the navbar */
+}
+
+.logout-btn {
+  margin-right: 20px;
+}
+
+.thumbnail {
+  border: 1px solid lightgray;
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  //float: right; /* to take the image right side close to product title */
+  background-size: cover; /* With this attribute we can resize the image without loosing its aspect ratio. So our image will not look squashed. */
+}

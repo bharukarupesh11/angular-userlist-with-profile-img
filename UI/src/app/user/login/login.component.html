@@ -1,0 +1,77 @@
+<!-- <div class="form-container">
+    <main class="login-form">
+        <form>
+            <h1 class="h4 mb-4 fw-bold">Login Page</h1>
+            
+            <div class="form-group form-floating">
+                <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+
+
+            <br>
+            
+            <div class="form-group form-floating">
+                <input type="password" ngModel name="password" class="form-control" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+            
+            <br>
+            
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+            
+            <br><br>
+
+            <div style="text-align: center;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#userSignupModal" title="Signup Here">Create an account</a>
+            </div>
+
+            <p class="mt-5 mb-3 text-muted">&copy; User Registration App</p>
+        </form>
+  </main>
+</div> -->
+
+<!-- Add this line above copyright -->
+<!-- <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0">{{ errorMsg }}</div> -->
+
+
+
+<div class="form-container">
+    <main class="login-form">
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" ngNativeValidate>
+            <h1 class="h4 mb-4 fw-bold">Login Page</h1>
+            
+            <div class="form-group form-floating">
+                <input type="email" class="form-control" formControlName="email" id="email" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+
+
+            <br>
+            
+            <div class="form-group form-floating">
+                <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+            </div>
+            
+            <br>
+            
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Login</button>
+            
+            <br><br>
+
+            <div style="text-align: center;">
+                <a href="#" data-bs-toggle="modal" data-bs-target="#userSignupModal" title="Signup Here">Create an account</a>
+            </div>
+
+            <div *ngIf="errorMsg" class="alert alert-danger mt-3 mb-0">{{ errorMsg }}</div>
+
+            <p class="mt-5 mb-3 text-muted">&copy; User Registration App</p>
+        </form>
+  </main>
+</div>
+
+<div class="modal fade" id="userSignupModal" tabindex="-1" aria-labelledby="userSignupLabel" aria-hidden="true">
+    <signup></signup>
+</div>
+

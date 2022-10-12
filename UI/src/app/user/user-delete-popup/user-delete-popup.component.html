@@ -1,0 +1,19 @@
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="deleteCustLabel">Delete User</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Are you sure, you want to delete the user? 
+            <!-- <span class="fw-bold">This will also delete the invoices for this customer.</span> -->
+        </div>
+        <div class="modal-footer">
+            <button type="button" (click)="delete(userService.userToDelete)" [disabled]="loading" class="btn btn-danger">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Delete
+            </button>
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+        </div>
+    </div>
+</div>

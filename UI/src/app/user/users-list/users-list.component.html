@@ -1,0 +1,108 @@
+<div class="container">
+  <div class="logout-btn text-end">
+    <p>
+      <a class="btn btn-success" (click)="logout()">Logout</a>
+    </p>
+  </div>
+
+  <h2 class="text-center fw-bold">List of All Users</h2>
+
+  <p>
+    <a href="/admin/user/new" class="btn btn-primary">Add User</a>
+  </p>
+
+  <table class="table table-hover border">
+    <thead class="bg-light">
+      <tr>
+        <th class="text-center">Profile Img</th>
+        <th class="text-center">First Name</th>
+        <th class="text-center">Last Name</th>
+        <th class="text-center">Email Id</th>
+
+        <!-- Render this action columns only if there's a customer in the application; Otherwise not. Used this approach to solve Datatable Error: TypeError: Cannot set properties of undefined (setting '_DT_CellIndex'). -->
+        <ng-container *ngIf="users.length">
+          <th class="text-center">Operation</th>
+          <th class="text-center">Action</th>
+        </ng-container>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngIf="users.length; else noDataFound">
+        <tr
+          *ngFor="
+            let user of users
+              | paginate
+                : {
+                    id: 'user_list_pagination',
+                    itemsPerPage: recordsPerPage,
+                    currentPage: currentPageNumber,
+                    totalItems: totalRecords
+                  }
+          "
+        >
+          <!-- <td class="text-center"> <img [src]="url" alt="profile_img" class="thumbnail"> </td> -->
+          <td class="text-center">
+            <img
+              src="http://localhost:3000/api/users/userprofile/{{ user.file }}"
+              class="thumbnail"
+              alt="Profile_img"
+            />
+          </td>
+
+          <td class="text-center">{{ user.firstName }}</td>
+          <td class="text-center">{{ user.lastName }}</td>
+          <td class="text-center">{{ user.email }}</td>
+
+          <td class="text-center">
+            <a
+              [routerLink]="['/admin/user/', user.userId]"
+              class="btn btn-primary"
+            >
+              Edit
+            </a>
+          </td>
+
+          <td class="text-center">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="setUserId(user.userId)"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteUserModal"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #noDataFound>
+        <tr>
+          <td colspan="4" class="text-center fw-bold">No data found!</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+
+  <div class="text-end">
+    <pagination-controls
+      id="user_list_pagination"
+      (pageChange)="onTableDataChange($event)"
+      (maxSize)="(maxPagesLink)"
+      (directionLinks)="(directionLink)"
+    >
+    </pagination-controls>
+  </div>
+
+  <!-- Delete User Modal: Starts -->
+  <div
+    class="modal fade"
+    id="deleteUserModal"
+    tabindex="-1"
+    aria-labelledby="deleteUserLabel"
+    aria-hidden="true"
+  >
+    <user-delete-popup></user-delete-popup>
+  </div>
+  <!-- Delete User Modal: Ends -->
+</div>

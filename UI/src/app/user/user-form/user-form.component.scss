@@ -1,0 +1,11 @@
+.form-container{
+    display: flex;
+    align-items: center; /* to align items verticall on cross axis */
+    justify-content: center; /* to align items horizontally on main axis */
+    margin-top: 100px;
+    /* border: 1px solid green; */
+}
+
+.form-group {
+    margin-bottom: 20px; /* give space between each form-group element */
+}
